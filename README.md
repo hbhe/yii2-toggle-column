@@ -46,40 +46,38 @@ public function actions()
     ];
 }
 
-
-// view文件中
-
+// View文件中
 // Pjax::begin();
-GridView::widget(
-	[
-		'dataProvider' => $dataProvider,
-		'filterModel' => $searchModel,
-		'columns' => [
-            'id',
-            [
-                'class' => '\hbhe\grid\ToggleColumn',
-                'attribute' => 'status',
-                'action' => 'toggle-status',
-                'onText' => '禁用',
-                'offText' => '启用',
-                'displayValueText' => true,
-                'onValueText' => '已禁用',
-                'offValueText' => '已启用',
-                'iconOn' => 'stop',
-                'iconOff' => 'stop',
-                'enableAjax' => false, // 使用pjax时要设为true
-                'confirm' => function($model, $toggle) {
-                    if ($model->status == Member::STATUS_NOT_ACTIVE) {
-                        return "确认启用: {$model->username}({$model->id})?";
-                    } else {
-                        return "确认禁用: {$model->username}({$model->id})?";
-                    }
-                },
-                'headerOptions' => array('style' => 'width:80px;'),
-            ],
-		],
-	]
-);
+GridView::widget([
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'columns' => [
+        'id',
+        [
+            'class' => '\hbhe\grid\ToggleColumn',
+            'attribute' => 'status',
+            'action' => 'toggle-status',
+            'onText' => '禁用',
+            'offText' => '启用',
+            'displayValueText' => true,
+            'onValueText' => '已禁用',
+            'offValueText' => '已启用',
+            'iconOn' => 'stop',
+            'iconOff' => 'stop',
+            'enableAjax' => false, // 使用pjax时要设为true
+            'confirm' => function($model, $toggle) {
+                if ($model->status == Member::STATUS_NOT_ACTIVE) {
+                    return "确认启用: {$model->username}({$model->id})?";
+                } else {
+                    return "确认禁用: {$model->username}({$model->id})?";
+                }
+            },
+            'headerOptions' => array('style' => 'width:80px;'),
+        ],
+    ],
+]);
 
 // Pjax::end();
 ```
+
+ ![截图](https://github.com/hbhe/yii2-toggle-column/blob/master/screenshot.png)
