@@ -55,7 +55,7 @@ GridView::widget(
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
 		'columns' => [
-			'id',
+            'id',
             [
                 'class' => '\hbhe\grid\ToggleColumn',
                 'attribute' => 'status',
